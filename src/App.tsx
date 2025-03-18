@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import "./App.css"
 import Incomes from "./pages/Incomes";
 import Expenses from "./pages/Expenses";
 import Statistics from "./pages/Statistics";
@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 const App: React.FC = () => {
   return (
     <Router>
-      <div>
+      <div className="center-container">
         <h1>Калькулятор расходов и доходов</h1>
         <nav>
           <ul>
-            <li><Link to="/">Statistics</Link></li>
+            {/* <li><Link to="/">Statistics</Link></li> */}
             
             <li><Link to="/incomes">Incomes</Link></li>
             <li><Link to="/expenses">Expenses</Link></li>

@@ -14,7 +14,6 @@ const Stats: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Fetch incomes (if any)
       const incomeResponse = await axiosApi.get("/incomes.json");
       let incomeTotal = 0;
       if (incomeResponse.data) {
@@ -25,7 +24,6 @@ const Stats: React.FC = () => {
       }
       setTotalIncome(incomeTotal);
 
-      // Fetch expenses
       const expenseResponse = await axiosApi.get("/expenses.json");
       if (expenseResponse.data) {
         setExpenses(Object.entries(expenseResponse.data).map(([id, data]) => ({ id, ...data })));
@@ -36,14 +34,12 @@ const Stats: React.FC = () => {
         setTotalExpense(totalExpense);
       }
 
-      // Fetch categories
       const categoryResponse = await axiosApi.get("/expenseCategories.json");
       if (categoryResponse.data) {
         setCategories(
           Object.entries(categoryResponse.data).map(([id, { name }]) => ({ id, name }))
         );
       } else {
-        // Set default categories if not present
         const defaultCategories = [
           { name: "Продукты" },
           { name: "Транспорт" },
@@ -65,7 +61,6 @@ const Stats: React.FC = () => {
     await axiosApi.post("/expenses.json", { category, amount: parseFloat(amount) });
     setAmount("");
     setCategory("");
-    // Fetch new expenses after adding
     const expenseResponse = await axiosApi.get("/expenses.json");
     if (expenseResponse.data) {
       setExpenses(Object.entries(expenseResponse.data).map(([id, data]) => ({ id, ...data })));
@@ -77,7 +72,6 @@ const Stats: React.FC = () => {
     setExpenses((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // Prepare data for Pie chart (just for expenses for simplicity)
   const expenseData = categories.map((cat) => {
     const categoryExpenses = expenses
       .filter((expense) => expense.category === cat.name)
@@ -85,7 +79,6 @@ const Stats: React.FC = () => {
     return { name: cat.name, value: categoryExpenses };
   });
 
-  // Colors for Pie chart segments
   const COLORS = ['#4caf50', '#f44336', '#ff9800', '#2196f3'];
 
   return (
@@ -139,6 +132,9 @@ const Stats: React.FC = () => {
           fullWidth
           margin="normal"
           required
+          inputProps={{
+            style: { WebkitAppearance: "none", MozAppearance: "textfield" }
+          }}
         />
 
         <Button onClick={addExpense} variant="contained" color="primary">
