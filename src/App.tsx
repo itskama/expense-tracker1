@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AddIncome from "./pages/AddIncome";
-import AddExpense from "./pages/AddExpense";
+
 import Incomes from "./pages/Incomes";
 import Expenses from "./pages/Expenses";
 import Statistics from "./pages/Statistics";
@@ -14,16 +13,14 @@ const App: React.FC = () => {
         <nav>
           <ul>
             <li><Link to="/">Statistics</Link></li>
-            <li><Link to="/add-income">Add Income</Link></li>
-            <li><Link to="/add-expense">Add Expense</Link></li>
+            
             <li><Link to="/incomes">Incomes</Link></li>
             <li><Link to="/expenses">Expenses</Link></li>
           </ul>
         </nav>
         <Routes>
           <Route path="/" element={<Statistics />} />
-          <Route path="/add-income" element={<AddIncome />} />
-          <Route path="/add-expense" element={<AddExpense />} />
+
           <Route path="/incomes" element={<Incomes />} />
           <Route path="/expenses" element={<Expenses />} />
         </Routes>
