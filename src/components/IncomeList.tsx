@@ -37,7 +37,7 @@ const Stats: React.FC = () => {
       }
 
       const categoryResponse = await axiosApi.get("/incomeCategories.json");
-      if (categoryResponse.data) {
+      if (categoryResponse.data) {``
         setCategories(
           Object.entries(categoryResponse.data).map(([id, { name }]) => ({ id, name }))
         );
